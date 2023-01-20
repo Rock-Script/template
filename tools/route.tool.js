@@ -3,6 +3,7 @@ const ResponseHandlingMiddleware = require('../middlewares/response-handling.mid
 const RequestInterceptorMiddleware = require('../middlewares/request-interceptor.middleware');
 const RequestValidationMiddleware = require('../middlewares/request-validation.middleware');
 const SystemRoutes = require('../components/system/system.routes');
+const Logger = require('./log.tool');
 
 class RouteTool {
 
@@ -19,6 +20,7 @@ class RouteTool {
 
     addRoutes(routes) {
         routes.forEach(route => {
+            Logger.info(`[${route.method}]: ${route.path}`);
             this.#router[route.method](
                 route.path,
                 (req, res, next) => RequestInterceptorMiddleware(req, res, next),
