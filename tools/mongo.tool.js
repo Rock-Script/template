@@ -42,8 +42,8 @@ class Mongo {
         return data;
     }
 
-    async findOne(collection, payload) {
-        const data = await this.getDatabase().collection(collection).findOne(payload);
+    async findOne(collection, payload, projection) {
+        const data = await this.getDatabase().collection(collection).findOne(payload, projection);
         return data;
     }
 

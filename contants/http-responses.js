@@ -15,9 +15,8 @@ module.exports = {
         status: 400,
         message: 'Bad request'
     },
-    UNAUTHORIZED: {
-        status: 401,
-        message: 'You are not authorised to make this request'
+    UNAUTHORIZED: (mesage) => {
+        return { status: 401, message: mesage || 'You are not authorised to make this request' }
     },
     PAYMENT_REQUIRED: {
         status: 402,
@@ -27,9 +26,8 @@ module.exports = {
         status: 403,
         message: 'You are forbidden to make this request'
     },
-    NOT_FOUND: {
-        status: 404,
-        message: 'Entity not found'
+    NOT_FOUND: (entity, entity_id) => {
+        return { status: 404, message: `${entity} with ${entity_id} not found` };
     },
     METHOD_NOT_ALLOWED: {
         status: 403,
@@ -43,8 +41,10 @@ module.exports = {
         status: 409,
         message: 'Conflicts on data'
     },
-    INTERNAL_SERVER_ERROR: {
-        status: 500,
-        message: 'Internal server error'
+    INTERNAL_SERVER_ERROR: () => {
+        return {
+            status: 500,
+            message: 'Internal server error'
+        }
     }
 };

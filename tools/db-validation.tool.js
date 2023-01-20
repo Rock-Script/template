@@ -1,10 +1,17 @@
+let Joi = require('joi');
 const _ = require('lodash');
-const Joi = require('joi')
+const { joiPasswordExtendCore } = require('joi-password');
+const JoiPhoneNumber = require('joi-phone-number');
+
 Joi.objectId = require('joi-objectid')(Joi);
+Joi = Joi.extend(JoiPhoneNumber)
+        .extend(joiPasswordExtendCore);
 
 const Mongo = require('./mongo.tool');
 
 module.exports.ObjectId = () => Joi.objectId();
+module.exports.phoneNumber = () => Joi.string().phoneNumber({ defaultCountry: 'IN'});
+module.exports.password = () => Joi.string().minOfSpecialCharacters(2).minOfLowercase(2).minOfUppercase(2).minOfNumeric(2).noWhiteSpaces();
 
 module.exports.validate = (database_schema, params) => {
     try {
