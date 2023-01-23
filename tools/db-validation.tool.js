@@ -32,8 +32,8 @@ module.exports.validate = (database_schema, params) => {
 
 const updateObjectForValidation = (params) => {
     _.keys(params).forEach(key => {
-        if (key.endsWith("_id")) {
-            params[key] = params[key].toString()
+        if (key.endsWith("_id") && params[key]) {
+            params[key] = params[key]?.toString()
         } else if (_.isObject(params[key])) {
             updateObjectForValidation(params[key]);
         }
@@ -43,7 +43,7 @@ const updateObjectForValidation = (params) => {
 
 const updateObjectForDatabase = (params) => {
     _.keys(params).forEach(key => {
-        if (key.endsWith("_id")) {
+        if (key.endsWith("_id") && params[key]) {
             params[key] = Mongo.id(params[key]);
         } else if (_.isObject(params[key])) {
             updateObjectForDatabase(params[key]);
