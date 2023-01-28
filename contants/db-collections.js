@@ -1,4 +1,5 @@
 module.exports = {
     INSTITUTES: 'institutes',
-    COURSES: 'courses'
+    COURSES: 'courses',
+    EXAMS: 'exams'
 }

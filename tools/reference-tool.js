@@ -8,3 +8,7 @@ module.exports.getCourse = async(course_id, institute_id) => {
 module.exports.getInstitute = async(institute_id) => {
     return await Mongo.findOne(DB_COLLECTIONS.INSTITUTES, { _id: Mongo.id(institute_id) });
 }
+
+module.exports.getExam = async(exam_id, institute_id) => {
+    return await Mongo.findOne(DB_COLLECTIONS.EXAMS, { _id: Mongo.id(exam_id) });
+}
