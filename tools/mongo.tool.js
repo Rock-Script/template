@@ -28,6 +28,10 @@ class Mongo {
         return _id ? MongoDB.ObjectId(_id) : MongoDB.ObjectId();
     }
 
+    idArray(a) {
+        return a.map(_id => this.id(_id));
+    }
+
     getDatabase() {
         return this.#client.db(this.#database);
     }

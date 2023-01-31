@@ -10,6 +10,7 @@ Joi = Joi.extend(JoiPhoneNumber)
 const Mongo = require('./mongo.tool');
 
 module.exports.ObjectId = () => Joi.objectId();
+module.exports.stringObjectIds = () => Joi.string().pattern(/^([a-f\d]{24})(?:,([a-f\d]{24}))*$/);
 module.exports.phoneNumber = () => Joi.string().phoneNumber({ defaultCountry: 'IN'});
 module.exports.password = () => Joi.string().minOfSpecialCharacters(2).minOfLowercase(2).minOfUppercase(2).minOfNumeric(2).noWhiteSpaces();
 
