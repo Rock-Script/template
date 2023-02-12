@@ -17,3 +17,8 @@ module.exports.INSTITUTE_SCHEMA = Joi.object({
 module.exports.COURSE_SCHEMA = Joi.object({
     ...this.PARENT_SCHEMA
 })
+
+module.exports.ROLE_SCHEMA = Joi.object({
+    ...this.PARENT_SCHEMA,
+    previleges: Joi.array().items(ObjectId()).required()
+})
