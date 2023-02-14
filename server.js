@@ -44,6 +44,8 @@ class Server {
     initializeMongo(url, database, callback) {
         const Mongo = require('./tools/mongo.tool');
         Mongo.connect(url, database);
+        const ApplicationCache = require('./tools/application.cache.tool');
+        ApplicationCache.init();
         callback();
     }
 
