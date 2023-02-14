@@ -1,5 +1,7 @@
 module.exports = {
     INSTITUTES: 'institutes',
     COURSES: 'courses',
-    EXAMS: 'exams'
+    EXAMS: 'exams',
+    MEMBERS: 'members',
+    USERS: 'users'
 }
