@@ -11,9 +11,11 @@ module.exports = {
         status: 204,
         message: 'No data present for request'
     },
-    BAD_REQUEST: {
-        status: 400,
-        message: 'Bad request'
+    BAD_REQUEST: (message) => {
+        return {
+            status: 400,
+            message: 'Bad request: ' + message
+        }
     },
     UNAUTHORIZED: (mesage) => {
         return { status: 401, message: mesage || 'You are not authorised to make this request' }
