@@ -26,6 +26,7 @@ module.exports.getMembers = async(filter) => {
     const pipline = [];
     const match = {};
     if (filter.email) match.email = new RegExp(match.email, "i");
+    if (filter._ids) match._id = { $in: Mongo.idArray(filter._ids) };
     pipline.push({ $match: match });
     return await Mongo.aggregate(DB_COLLECTIONS.MEMBERS, pipline);
 }
