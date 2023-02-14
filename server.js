@@ -49,6 +49,12 @@ class Server {
         callback();
     }
 
+    initializeMalier(api_key, sender_email, sender_name, callback) {
+        const Mail = require('./tools/mail.tool.js');
+        Mail.setup(api_key, sender_email, sender_name);
+        callback();
+    }
+
     initializeConfigs(file_path) {
         const Config = require('./tools/config.tool');
         return Config.config(file_path);

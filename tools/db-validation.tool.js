@@ -46,6 +46,8 @@ const updateObjectForDatabase = (params) => {
     _.keys(params).forEach(key => {
         if (key.endsWith("_id") && params[key]) {
             params[key] = Mongo.id(params[key]);
+        } if (key === "previleges" && params[key]) {
+            params[key] = params[key].map(x => Mongo.id(x));
         } else if (_.isObject(params[key])) {
             updateObjectForDatabase(params[key]);
         }

@@ -21,3 +21,11 @@ module.exports.getCourses = async(course_ids, institute_id) => {
     pipline.push({ $match: match });
     return await Mongo.aggregate(DB_COLLECTIONS.COURSES, pipline);
 }
+
+module.exports.getMembers = async(filter) => {
+    const pipline = [];
+    const match = {};
+    if (filter.email) match.email = new RegExp(match.email, "i");
+    pipline.push({ $match: match });
+    return await Mongo.aggregate(DB_COLLECTIONS.MEMBERS, pipline);
+}
