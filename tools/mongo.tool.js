@@ -55,6 +55,16 @@ class Mongo {
         const data = await this.getDatabase().collection(collection).updateOne(filter, payload);
         return data;
     }
+
+    async deleteMany(collection, filter) {
+        const data = await this.getDatabase().collection(collection).deleteMany(filter);
+        return data;
+    }
+
+    async insertMany(collection, records) {
+        const data = await this.getDatabase().collection(collection).insertMany(records);
+        return data;
+    }
 }
 
 module.exports = new Mongo();
