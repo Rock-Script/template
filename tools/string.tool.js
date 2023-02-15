@@ -5,3 +5,7 @@ module.exports.snakeToCamel = str =>
       .replace('-', '')
       .replace('_', '')
     );
+
+module.exports.getRandomString = () => {
+  return `${Math.random() * 10000000}`;
+}
