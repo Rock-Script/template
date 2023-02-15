@@ -39,3 +39,8 @@ module.exports.getUsers = async(filter) => {
     pipline.push({ $match: match });
     return await Mongo.aggregate(DB_COLLECTIONS.USERS, pipline);
 }
+
+module.exports.getUserByEmail = async(email) => {
+    if (!email) return null;
+    return await Mongo.findOne(DB_COLLECTIONS.EXAMS, { email: new RegExp(email.trim(), "i") });
+}
