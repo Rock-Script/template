@@ -30,3 +30,17 @@ module.exports.getMembers = async(filter) => {
     pipline.push({ $match: match });
     return await Mongo.aggregate(DB_COLLECTIONS.MEMBERS, pipline);
 }
+
+module.exports.getUsers = async(filter) => {
+    const pipline = [];
+    const match = {};
+    if (filter.email) match.email = new RegExp(match.email, "i");
+    if (filter._ids) match._id = { $in: Mongo.idArray(filter._ids) };
+    pipline.push({ $match: match });
+    return await Mongo.aggregate(DB_COLLECTIONS.USERS, pipline);
+}
+
+module.exports.getUserByEmail = async(email) => {
+    if (!email) return null;
+    return await Mongo.findOne(DB_COLLECTIONS.EXAMS, { email: new RegExp(email.trim(), "i") });
+}
